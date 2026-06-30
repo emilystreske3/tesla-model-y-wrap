@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#05070b" />
+  <title>Red Model Y Autopilot Visualization</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="tesla-screen">
+    <section class="hud-left">
+      <div class="drive-state">D</div>
+      <div class="speed-stack">
+        <span id="speed">0</span>
+        <small>mph</small>
+      </div>
+      <div class="battery-card">
+        <div class="battery-icon"><span id="batteryFill"></span></div>
+        <strong><span id="battery">87</span>%</strong>
+      </div>
+      <div class="status-list">
+        <div><span class="dot blue"></span> Autosteer visual</div>
+        <div><span class="dot green"></span> Lane tracking</div>
+        <div><span class="dot red"></span> Lightning mode</div>
+      </div>
+    </section>
+
+    <section class="autopilot-visual">
+      <div class="sky-glow"></div>
+      <div class="road">
+        <div class="blue-path"></div>
+        <div class="lane lane-left"></div>
+        <div class="lane lane-right"></div>
+        <div class="road-dash dash-a"></div>
+        <div class="road-dash dash-b"></div>
+        <div class="road-dash dash-c"></div>
+        <div class="traffic car-one">CAR</div>
+        <div class="traffic car-two">SUV</div>
+        <div class="traffic car-three">TRUCK</div>
+      </div>
+
+      <div class="ego-car" id="egoCar">
+        <div class="sensor-ring ring-one"></div>
+        <div class="sensor-ring ring-two"></div>
+        <div class="car-top"></div>
+        <div class="windshield"></div>
+        <div class="wrap-bolt"></div>
+        <div class="sweep"></div>
+        <div class="ghost-number">95</div>
+        <div class="car-label">NOT LIGHTNING MCQUEEN</div>
+      </div>
+    </section>
+
+    <section class="hud-right">
+      <div class="route-card">
+        <p class="eyebrow">Visualization</p>
+        <h1>Red Y<br />Autopilot</h1>
+        <p class="subtext">Custom wrap display with blue path rendering, lane objects, pulse sensors, speed simulation, and Tesla-inspired driving HUD.</p>
+      </div>
+
+      <div class="control-grid">
+        <button onclick="accelerate()">⚡ Accelerate</button>
+        <button onclick="slowDown()">⬇ Slow</button>
+        <button onclick="toggleAutopilot()" id="apBtn">🔵 Autopilot On</button>
+        <button onclick="resetDrive()">↺ Reset</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

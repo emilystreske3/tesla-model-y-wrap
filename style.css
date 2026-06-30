@@ -1,0 +1,423 @@
+:root {
+  --bg: #05070b;
+  --panel: rgba(18, 22, 30, 0.82);
+  --panel-light: rgba(255, 255, 255, 0.075);
+  --border: rgba(255, 255, 255, 0.11);
+  --text: #f5f7fb;
+  --muted: #9aa3b5;
+  --red: #d20f31;
+  --red-dark: #690515;
+  --blue: #4da3ff;
+  --blue-soft: rgba(77, 163, 255, 0.28);
+  --green: #2cff8a;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 50% 10%, rgba(77, 163, 255, 0.14), transparent 35rem),
+    linear-gradient(180deg, #090d14, #020305 70%);
+  overflow: hidden;
+}
+
+.tesla-screen {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 270px 1fr 330px;
+  gap: 18px;
+  padding: 20px;
+}
+
+.hud-left,
+.hud-right,
+.route-card,
+.control-grid button,
+.battery-card,
+.status-list {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 22px 70px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.hud-left,
+.hud-right {
+  border-radius: 30px;
+  padding: 22px;
+}
+
+.drive-state {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border);
+  font-weight: 900;
+  font-size: 1.7rem;
+}
+
+.speed-stack { margin-top: 30px; }
+#speed {
+  display: block;
+  font-size: clamp(5rem, 8vw, 8.5rem);
+  line-height: 0.85;
+  font-weight: 200;
+  letter-spacing: -0.08em;
+}
+.speed-stack small {
+  color: var(--muted);
+  font-size: 1.2rem;
+  margin-left: 8px;
+}
+
+.battery-card {
+  margin-top: 26px;
+  border-radius: 24px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.battery-icon {
+  width: 72px;
+  height: 30px;
+  border-radius: 8px;
+  border: 2px solid rgba(255,255,255,0.35);
+  position: relative;
+  overflow: hidden;
+}
+.battery-icon::after {
+  content: "";
+  position: absolute;
+  right: -7px;
+  top: 8px;
+  width: 5px;
+  height: 11px;
+  background: rgba(255,255,255,0.45);
+  border-radius: 0 4px 4px 0;
+}
+#batteryFill {
+  display: block;
+  height: 100%;
+  width: 87%;
+  background: linear-gradient(90deg, var(--green), #b6ff3d);
+  box-shadow: 0 0 18px rgba(44,255,138,0.55);
+}
+.battery-card strong { font-size: 1.4rem; }
+
+.status-list {
+  margin-top: 18px;
+  border-radius: 24px;
+  padding: 18px;
+  display: grid;
+  gap: 14px;
+  color: #dce3ef;
+}
+.dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 9px;
+}
+.dot.blue { background: var(--blue); box-shadow: 0 0 14px var(--blue); }
+.dot.green { background: var(--green); box-shadow: 0 0 14px var(--green); }
+.dot.red { background: var(--red); box-shadow: 0 0 14px var(--red); }
+
+.autopilot-visual {
+  position: relative;
+  overflow: hidden;
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(77,163,255,0.12), transparent 26rem),
+    linear-gradient(180deg, #111722 0%, #070a10 46%, #020305 100%);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 26px 90px rgba(0,0,0,0.55);
+}
+
+.sky-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent, rgba(255,255,255,0.025), transparent),
+    radial-gradient(circle at 50% 0%, rgba(77,163,255,0.16), transparent 34%);
+}
+
+.road {
+  position: absolute;
+  left: 50%;
+  bottom: -20%;
+  width: 72%;
+  height: 130%;
+  transform: translateX(-50%) perspective(720px) rotateX(64deg);
+  transform-origin: bottom center;
+  overflow: hidden;
+}
+
+.road::before,
+.road::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  width: 2px;
+  height: 150%;
+  background: linear-gradient(transparent, rgba(255,255,255,0.18), transparent);
+}
+.road::before { left: 8%; }
+.road::after { right: 8%; }
+
+.blue-path {
+  position: absolute;
+  left: 50%;
+  top: -12%;
+  width: 24%;
+  height: 125%;
+  transform: translateX(-50%);
+  border-radius: 999px 999px 0 0;
+  background: linear-gradient(180deg, rgba(77,163,255,0.02), rgba(77,163,255,0.32), rgba(77,163,255,0.06));
+  border-left: 2px solid rgba(77,163,255,0.55);
+  border-right: 2px solid rgba(77,163,255,0.55);
+  box-shadow: 0 0 40px rgba(77,163,255,0.24);
+  animation: pathPulse 2.2s ease-in-out infinite;
+}
+
+.lane {
+  position: absolute;
+  top: -100%;
+  width: 4px;
+  height: 220%;
+  background: repeating-linear-gradient(180deg, rgba(255,255,255,0.45) 0 42px, transparent 42px 86px);
+  opacity: 0.45;
+  animation: roadMove 1.35s linear infinite;
+}
+.lane-left { left: 36%; }
+.lane-right { right: 36%; }
+
+.road-dash {
+  position: absolute;
+  left: 50%;
+  width: 7px;
+  height: 90px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.38);
+  transform: translateX(-50%);
+  animation: dashMove 1.2s linear infinite;
+}
+.dash-a { top: -10%; animation-delay: 0s; }
+.dash-b { top: 25%; animation-delay: -0.4s; }
+.dash-c { top: 60%; animation-delay: -0.8s; }
+
+.traffic {
+  position: absolute;
+  width: 70px;
+  height: 34px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: rgba(255,255,255,0.62);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  background: linear-gradient(180deg, #343a43, #171b22);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+  animation: trafficMove 4.8s linear infinite;
+}
+.car-one { left: 18%; top: -16%; animation-delay: -1s; }
+.car-two { right: 18%; top: -42%; animation-delay: -2.7s; }
+.car-three { left: 58%; top: -70%; animation-delay: -3.8s; }
+
+.ego-car {
+  position: absolute;
+  left: 50%;
+  bottom: 9%;
+  width: 210px;
+  height: 300px;
+  transform: translateX(-50%);
+  z-index: 20;
+}
+
+.sensor-ring {
+  position: absolute;
+  left: 50%;
+  bottom: 62px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 1px solid rgba(77,163,255,0.18);
+  transform: translateX(-50%);
+  animation: sensorPulse 2.4s ease-out infinite;
+}
+.ring-two { animation-delay: 1.2s; }
+
+.car-top {
+  position: absolute;
+  left: 50%;
+  bottom: 42px;
+  width: 138px;
+  height: 220px;
+  transform: translateX(-50%);
+  border-radius: 58px 58px 38px 38px;
+  background: linear-gradient(180deg, #ff2b4b, var(--red) 45%, var(--red-dark));
+  box-shadow: inset 0 12px 20px rgba(255,255,255,0.13), inset 0 -24px 32px rgba(0,0,0,0.35), 0 30px 60px rgba(0,0,0,0.65);
+}
+.windshield {
+  position: absolute;
+  left: 50%;
+  bottom: 170px;
+  width: 82px;
+  height: 64px;
+  transform: translateX(-50%);
+  border-radius: 34px 34px 14px 14px;
+  background: linear-gradient(180deg, #111824, #030407);
+  border: 3px solid rgba(0,0,0,0.45);
+  z-index: 3;
+}
+.wrap-bolt {
+  position: absolute;
+  left: 70px;
+  bottom: 88px;
+  width: 92px;
+  height: 94px;
+  clip-path: polygon(5% 45%, 48% 0%, 36% 42%, 95% 30%, 42% 100%, 55% 56%);
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.12) 0 3px, transparent 3px 8px),
+    linear-gradient(135deg, #050505, #32353b 55%, #07080b);
+  z-index: 4;
+  filter: drop-shadow(0 0 10px rgba(255,31,61,0.75)) drop-shadow(0 0 28px rgba(255,31,61,0.34));
+  animation: lightningPulse 2s ease-in-out infinite;
+}
+.sweep {
+  position: absolute;
+  left: 70px;
+  bottom: 88px;
+  width: 92px;
+  height: 94px;
+  clip-path: polygon(5% 45%, 48% 0%, 36% 42%, 95% 30%, 42% 100%, 55% 56%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);
+  mix-blend-mode: screen;
+  z-index: 5;
+  animation: sweep 1.8s linear infinite;
+}
+.ghost-number {
+  position: absolute;
+  right: 42px;
+  bottom: 76px;
+  font-size: 2.5rem;
+  font-weight: 950;
+  color: transparent;
+  -webkit-text-stroke: 1.3px rgba(0,0,0,0.42);
+  opacity: 0.7;
+  z-index: 7;
+}
+.car-label {
+  position: absolute;
+  left: 50%;
+  bottom: 44px;
+  transform: translateX(-50%);
+  width: 160px;
+  text-align: center;
+  font-size: 0.52rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: rgba(0,0,0,0.68);
+  z-index: 8;
+}
+
+.hud-right {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+}
+.route-card {
+  border-radius: 30px;
+  padding: 24px;
+}
+.eyebrow {
+  margin: 0;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+}
+.route-card h1 {
+  margin: 12px 0 10px;
+  font-size: 3.4rem;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+.subtext { color: #dbe2ef; line-height: 1.45; }
+.control-grid {
+  display: grid;
+  gap: 10px;
+}
+.control-grid button {
+  border-radius: 18px;
+  padding: 16px 14px;
+  color: white;
+  font-weight: 850;
+  font-size: 1rem;
+}
+.control-grid button:nth-child(3) {
+  background: linear-gradient(135deg, #1555ff, #4da3ff);
+  box-shadow: 0 0 28px rgba(77,163,255,0.38);
+}
+
+.autopilot-off .blue-path,
+.autopilot-off .sensor-ring {
+  opacity: 0.12;
+  animation-play-state: paused;
+}
+.autopilot-off .lane,
+.autopilot-off .road-dash,
+.autopilot-off .traffic {
+  animation-play-state: paused;
+}
+
+@keyframes roadMove {
+  from { transform: translateY(-14%); }
+  to { transform: translateY(14%); }
+}
+@keyframes dashMove {
+  from { transform: translate(-50%, -160%); opacity: 0; }
+  20% { opacity: 0.8; }
+  to { transform: translate(-50%, 220%); opacity: 0; }
+}
+@keyframes trafficMove {
+  from { transform: translateY(-120%) scale(0.72); opacity: 0; }
+  20% { opacity: 0.85; }
+  to { transform: translateY(920%) scale(1.1); opacity: 0; }
+}
+@keyframes pathPulse {
+  0%, 100% { opacity: 0.65; box-shadow: 0 0 30px rgba(77,163,255,0.18); }
+  50% { opacity: 1; box-shadow: 0 0 58px rgba(77,163,255,0.42); }
+}
+@keyframes sensorPulse {
+  0% { transform: translateX(-50%) scale(0.4); opacity: 0.75; }
+  100% { transform: translateX(-50%) scale(1.35); opacity: 0; }
+}
+@keyframes lightningPulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(255,31,61,0.65)) drop-shadow(0 0 24px rgba(255,31,61,0.28)); }
+  50% { transform: scale(1.06); filter: drop-shadow(0 0 18px rgba(255,31,61,1)) drop-shadow(0 0 48px rgba(255,31,61,0.7)); }
+}
+@keyframes sweep {
+  from { transform: translateX(-140%); opacity: 0; }
+  30% { opacity: 0.85; }
+  to { transform: translateX(140%); opacity: 0; }
+}
+
+@media (max-width: 1000px) {
+  body { overflow: auto; }
+  .tesla-screen {
+    min-height: 100vh;
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .autopilot-visual { min-height: 620px; }
+}
