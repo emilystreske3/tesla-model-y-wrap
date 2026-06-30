@@ -1,37 +1,29 @@
-# 🔴 RED MODEL Y – CUSTOM BUILD
+# 🔴 Red Model Y Dashboard Page
 
-> NOT LIGHTNING MCQUEEN
+A dashboard-style GitHub Pages site for a **2021 Tesla Model Y custom wrap concept**.
 
----
+## Files
 
-## ⚡ Design Overview
+- `index.html` — main dashboard page
+- `style.css` — dashboard styling
+- `README.md` — repo description
 
-- Carbon fiber lightning bolt (doors only)
-- Ghosted "95" outline
-- Satin black chrome delete
-- Clean hood (no graphics)
-
----
-
-## 🎨 Build Spec
+## Build Spec
 
 - Base: Tesla Red
 - Lightning: Carbon Fiber
 - Accents: Matte Black / Dark Chrome
-- Wheels: Satin Black
+- Chrome Delete: Satin Black
+- Rear Badge: NOT LIGHTNING MCQUEEN
 
----
+## How to use with GitHub Pages
 
-## 🧠 Concept
+1. Upload `index.html`, `style.css`, and `README.md` into the root of your GitHub repo.
+2. Open repo settings.
+3. Go to Pages.
+4. Set source to deploy from the `main` branch.
+5. Open the GitHub Pages link in your Tesla browser.
 
-From far:
-Clean red Tesla
+## Note
 
-Up close:
-Hidden lightning + subtle "95"
-
----
-
-## 🔥 Vibe
-
-"Lightning McQueen grew up, got quiet, and got expensive."
+Personal custom build reference. Not affiliated with Tesla or Disney/Pixar.
