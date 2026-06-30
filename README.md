@@ -1,45 +1,37 @@
-# tesla-model-y-wrap
-<svg width="1200" height="400" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+# 🔴 RED MODEL Y – CUSTOM BUILD
 
-  <!-- Base Tesla -->
-  <rect x="50" y="150" width="1000" height="180" rx="60" fill="#C8102E"/>
+> NOT LIGHTNING MCQUEEN
 
-  <!-- Windows -->
-  <rect x="200" y="140" width="500" height="80" rx="20" fill="#111111"/>
+---
 
-  <!-- Wheels -->
-  <circle cx="300" cy="330" r="60" fill="#111"/>
-  <circle cx="800" cy="330" r="60" fill="#111"/>
+## ⚡ Design Overview
 
-  <!-- Carbon Fiber Pattern -->
-  <defs>
-    <pattern id="carbon" patternUnits="userSpaceOnUse" width="6" height="6">
-      <rect width="6" height="6" fill="#222"/>
-      <path d="M0 0 L6 6 M6 0 L0 6" stroke="#333" stroke-width="1"/>
-    </pattern>
-  </defs>
+- Carbon fiber lightning bolt (doors only)
+- Ghosted "95" outline
+- Satin black chrome delete
+- Clean hood (no graphics)
 
-  <!-- Lightning Bolt -->
-  <polygon points="650,180 900,140 800,230 1000,220 750,300 850,220 600,250"
-           fill="url(#carbon)" />
+---
 
-  <!-- Ghost 95 -->
-  <text x="720" y="280"
-        font-family="Arial"
-        font-size="80"
-        fill="none"
-        stroke="#111"
-        stroke-width="2"
-        opacity="0.25">
-        95
-  </text>
+## 🎨 Build Spec
 
-  <!-- Rear Badge -->
-  <text x="700" y="320"
-        font-family="Arial"
-        font-size="18"
-        fill="#111">
-        NOT LIGHTNING MCQUEEN
-  </text>
+- Base: Tesla Red
+- Lightning: Carbon Fiber
+- Accents: Matte Black / Dark Chrome
+- Wheels: Satin Black
 
-</svg>
+---
+
+## 🧠 Concept
+
+From far:
+Clean red Tesla
+
+Up close:
+Hidden lightning + subtle "95"
+
+---
+
+## 🔥 Vibe
+
+"Lightning McQueen grew up, got quiet, and got expensive."
